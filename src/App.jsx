@@ -19,7 +19,6 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patient" element={<Patient />} />
         <Route path="/" element={<LoginPage />} />
-        
         {/* Add more routes here as needed */}
      </Routes>
     </Router>
