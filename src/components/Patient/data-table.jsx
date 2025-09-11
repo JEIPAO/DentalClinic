@@ -126,46 +126,46 @@ function DragHandle({
 }
 
 const columns = [
+  // {
+  //   id: "drag",
+  //   header: () => null,
+  //   cell: ({ row }) => <DragHandle id={row.original.id} />,
+  // },
+  // {
+  //   id: "select",
+  //   header: ({ table }) => (
+  //     <div className="flex items-center justify-center">
+  //       <Checkbox
+  //         checked={
+  //           table.getIsAllPageRowsSelected() ||
+  //           (table.getIsSomePageRowsSelected() && "indeterminate")
+  //         }
+  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //         aria-label="Select all" />
+  //     </div>
+  //   ),
+  //   cell: ({ row }) => (
+  //     <div className="flex items-center justify-center">
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //         aria-label="Select row" />
+  //     </div>
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
-    id: "drag",
-    header: () => null,
-    cell: ({ row }) => <DragHandle id={row.original.id} />,
-  },
-  {
-    id: "select",
-    header: ({ table }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all" />
-      </div>
-    ),
-    cell: ({ row }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row" />
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "header",
-    header: "Header",
+    accessorKey: "firstname",
+    header: "First Name",
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />;
     },
     enableHiding: false,
   },
   {
-    accessorKey: "type",
-    header: "Section Type",
+    accessorKey: "middlename",
+    header: "Middle Name",
     cell: ({ row }) => (
       <div className="w-32">
         <Badge variant="outline" className="text-muted-foreground px-1.5">
@@ -175,8 +175,8 @@ const columns = [
     ),
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "lastname",
+    header: "Last Name",
     cell: ({ row }) => (
       <Badge variant="outline" className="text-muted-foreground px-1.5">
         {row.original.status === "Done" ? (
@@ -188,55 +188,352 @@ const columns = [
       </Badge>
     ),
   },
+  // {
+  //   accessorKey: "target",
+  //   header: () => <div className="w-full text-right">Target</div>,
+  //   cell: ({ row }) => (
+  //     <form
+  //       onSubmit={(e) => {
+  //         e.preventDefault()
+  //         toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
+  //           loading: `Saving ${row.original.header}`,
+  //           success: "Done",
+  //           error: "Error",
+  //         })
+  //       }}>
+  //       <Label htmlFor={`${row.original.id}-target`} className="sr-only">
+  //         Target
+  //       </Label>
+  //       <Input
+  //         className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+  //         defaultValue={row.original.target}
+  //         id={`${row.original.id}-target`} />
+  //     </form>
+  //   ),
+  // },
+  // {
+  //   accessorKey: "limit",
+  //   header: () => <div className="w-full text-right">Limit</div>,
+  //   cell: ({ row }) => (
+  //     <form
+  //       onSubmit={(e) => {
+  //         e.preventDefault()
+  //         toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
+  //           loading: `Saving ${row.original.header}`,
+  //           success: "Done",
+  //           error: "Error",
+  //         })
+  //       }}>
+  //       <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
+  //         Limit
+  //       </Label>
+  //       <Input
+  //         className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+  //         defaultValue={row.original.limit}
+  //         id={`${row.original.id}-limit`} />
+  //     </form>
+  //   ),
+  // },
   {
-    accessorKey: "target",
-    header: () => <div className="w-full text-right">Target</div>,
-    cell: ({ row }) => (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-            loading: `Saving ${row.original.header}`,
-            success: "Done",
-            error: "Error",
-          })
-        }}>
-        <Label htmlFor={`${row.original.id}-target`} className="sr-only">
-          Target
-        </Label>
-        <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.target}
-          id={`${row.original.id}-target`} />
-      </form>
-    ),
+    accessorKey: "datebirth",
+    header: "Date of Birth",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
   },
   {
-    accessorKey: "limit",
-    header: () => <div className="w-full text-right">Limit</div>,
-    cell: ({ row }) => (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-            loading: `Saving ${row.original.header}`,
-            success: "Done",
-            error: "Error",
-          })
-        }}>
-        <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
-          Limit
-        </Label>
-        <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.limit}
-          id={`${row.original.id}-limit`} />
-      </form>
-    ),
+    accessorKey: "age",
+    header: "Age",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
   },
   {
-    accessorKey: "reviewer",
-    header: "Reviewer",
+    accessorKey: "sex",
+    header: "Sex",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "religion",
+    header: "Religion",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "nationality",
+    header: "Nationality",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "contactno",
+    header: "Contact No.",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "address",
+    header: "Address",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "Occupation",
+    header: "Occupation",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "emailaddress",
+    header: "Email Address",
+    cell: ({ row }) => {
+      const isAssigned = row.original.reviewer !== "Assign reviewer"
+
+      if (isAssigned) {
+        return row.original.reviewer
+      }
+
+      return (
+        <>
+          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+            Reviewer
+          </Label>
+          <Select>
+            <SelectTrigger
+              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+              size="sm"
+              id={`${row.original.id}-reviewer`}>
+              <SelectValue placeholder="Assign reviewer" />
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+              <SelectItem value="Jamik Tashpulatov">
+                Jamik Tashpulatov
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </>
+      );
+    },
+  },
+  {
+    accessorKey: "nickname",
+    header: "Nick Name",
     cell: ({ row }) => {
       const isAssigned = row.original.reviewer !== "Assign reviewer"
 
@@ -395,14 +692,14 @@ export function DataTable({
         </Select>
         <TabsList
           className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
-          <TabsTrigger value="outline">Patient Information</TabsTrigger>
-          <TabsTrigger value="past-performance">
+          <TabsTrigger value="outline">Patient Record</TabsTrigger>
+          {/* <TabsTrigger value="past-performance">
             Past Performance <Badge variant="secondary">3</Badge>
-          </TabsTrigger>
-          <TabsTrigger value="key-personnel">
+          </TabsTrigger> */}
+          {/* <TabsTrigger value="key-personnel">
             Key Personnel <Badge variant="secondary">2</Badge>
-          </TabsTrigger>
-          <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
+          </TabsTrigger> */}
+          {/* <TabsTrigger value="focus-documents">View Details</TabsTrigger> */}
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>
