@@ -32,8 +32,10 @@ import {
 } from "@/components/ui/tabs"
 
 import { DateBirth } from "./datebirth"
+
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 
 export function RegisterPatient() {
@@ -41,6 +43,7 @@ export function RegisterPatient() {
     <Dialog>
       <form>
         <DialogTrigger asChild>
+
           <Button variant="outline" size="sm">
               <IconPlus />
               <span className="hidden lg:inline">Register Patient</span>
@@ -79,12 +82,14 @@ export function RegisterPatient() {
                     <div className="grid gap-3">
                       <Label htmlFor="sex">Sex</Label>
                       <select
+
                         name="sex"
                         className="w-full border rounded-md px-2 py-1"
                       >
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                       </select>
+
                     </div>
                     <div className="grid gap-3">
                       <Label htmlFor="religion">Religion</Label>
@@ -115,10 +120,12 @@ export function RegisterPatient() {
                       <Input id="nickname" name="nickname" />
                     </div>
                   </CardContent>
+
                 </Card>
               </TabsContent>
               <TabsContent value="minors">
                 <Card>
+
                   <CardContent className="grid grid-cols-3 gap-4">
                     <div className="grid col-span-3 gap-3">
                       <Label htmlFor="fname">Parent/Guardian's name</Label>
@@ -707,6 +714,7 @@ export function RegisterPatient() {
               </TabsContent>
             </Tabs>
           </div>
+
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
