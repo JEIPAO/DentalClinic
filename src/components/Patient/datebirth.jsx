@@ -12,14 +12,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-export function DateBirth() {
+export function DateBirth({labelname}) {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState("")
 
   return (
     <div className="flex flex-col gap-3">
       <Label htmlFor="date" className="px-1">
-        Date of birth
+        {labelname}
       </Label>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
