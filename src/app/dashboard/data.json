@@ -1,12 +1,20 @@
 [
   {
     "id": 1,
-    "header": "Cover page",
-    "type": "Cover page",
-    "status": "In Process",
-    "target": "18",
-    "limit": "5",
-    "reviewer": "Eddie Lake"
+    "firstname": "Jeirald",
+    "middlename": "Alarde",
+    "lastname": "lepaopao",
+    "datebirth": "07/14/1995",
+    "age": "30",
+    "sex": "Male",
+    "religion": "Roman Catholic",
+    "nationality": "Filipino",
+    "contact": "09123456789",
+    "address": "123 Main St, Cityville",
+    "occupation": "Engineer",
+    "email": "jlepaopao305@gmail.com",
+    "nickname": "Jeirald"
+
   },
   {
     "id": 2,

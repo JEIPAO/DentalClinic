@@ -126,53 +126,29 @@ function DragHandle({
 }
 
 const columns = [
-  // {
-  //   id: "drag",
-  //   header: () => null,
-  //   cell: ({ row }) => <DragHandle id={row.original.id} />,
-  // },
-  // {
-  //   id: "select",
-  //   header: ({ table }) => (
-  //     <div className="flex items-center justify-center">
-  //       <Checkbox
-  //         checked={
-  //           table.getIsAllPageRowsSelected() ||
-  //           (table.getIsSomePageRowsSelected() && "indeterminate")
-  //         }
-  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //         aria-label="Select all" />
-  //     </div>
-  //   ),
-  //   cell: ({ row }) => (
-  //     <div className="flex items-center justify-center">
-  //       <Checkbox
-  //         checked={row.getIsSelected()}
-  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //         aria-label="Select row" />
-  //     </div>
-  //   ),
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
+   {
+    accessorKey: "id",
+    patientid: "Patient ID",
+    cell: ({ row }) => {
+      return <TableCellViewer item={row.original}  className="w-15"/>;
+    },
+    enableHiding: false,
+  },
   {
     accessorKey: "firstname",
     header: "First Name",
     cell: ({ row }) => {
-      return <TableCellViewer item={row.original} />;
+      return <TableCellViewer item={row.original}  className="w-15"/>;
     },
     enableHiding: false,
   },
   {
     accessorKey: "middlename",
     header: "Middle Name",
-    cell: ({ row }) => (
-      <div className="w-32">
-        <Badge variant="outline" className="text-muted-foreground px-1.5">
-          {row.original.type}
-        </Badge>
-      </div>
-    ),
+    cell: ({ row }) => {
+       return <TableCellViewer item={row.original}  className="w-15"/>;
+    },
+    enableHiding: false,
   },
   {
     accessorKey: "lastname",
@@ -188,52 +164,7 @@ const columns = [
       </Badge>
     ),
   },
-  // {
-  //   accessorKey: "target",
-  //   header: () => <div className="w-full text-right">Target</div>,
-  //   cell: ({ row }) => (
-  //     <form
-  //       onSubmit={(e) => {
-  //         e.preventDefault()
-  //         toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-  //           loading: `Saving ${row.original.header}`,
-  //           success: "Done",
-  //           error: "Error",
-  //         })
-  //       }}>
-  //       <Label htmlFor={`${row.original.id}-target`} className="sr-only">
-  //         Target
-  //       </Label>
-  //       <Input
-  //         className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-  //         defaultValue={row.original.target}
-  //         id={`${row.original.id}-target`} />
-  //     </form>
-  //   ),
-  // },
-  // {
-  //   accessorKey: "limit",
-  //   header: () => <div className="w-full text-right">Limit</div>,
-  //   cell: ({ row }) => (
-  //     <form
-  //       onSubmit={(e) => {
-  //         e.preventDefault()
-  //         toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-  //           loading: `Saving ${row.original.header}`,
-  //           success: "Done",
-  //           error: "Error",
-  //         })
-  //       }}>
-  //       <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
-  //         Limit
-  //       </Label>
-  //       <Input
-  //         className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-  //         defaultValue={row.original.limit}
-  //         id={`${row.original.id}-limit`} />
-  //     </form>
-  //   ),
-  // },
+
   {
     accessorKey: "datebirth",
     header: "Date of Birth",
@@ -676,30 +607,10 @@ export function DataTable({
   return (
     <Tabs defaultValue="outline" className="w-full flex-col justify-start gap-6">
       <div className="flex items-center justify-between px-4 lg:px-6">
-        <Label htmlFor="view-selector" className="sr-only">
-          View
-        </Label>
-        <Select defaultValue="outline">
-          <SelectTrigger className="flex w-fit @4xl/main:hidden" size="sm" id="view-selector">
-            <SelectValue placeholder="Select a view" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="outline">Patient Information</SelectItem>
-            <SelectItem value="past-performance">Past Performance</SelectItem>
-            <SelectItem value="key-personnel">Key Personnel</SelectItem>
-            <SelectItem value="focus-documents">Focus Documents</SelectItem>
-          </SelectContent>
-        </Select>
+       
         <TabsList
           className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
           <TabsTrigger value="outline">Patient Record</TabsTrigger>
-          {/* <TabsTrigger value="past-performance">
-            Past Performance <Badge variant="secondary">3</Badge>
-          </TabsTrigger> */}
-          {/* <TabsTrigger value="key-personnel">
-            Key Personnel <Badge variant="secondary">2</Badge>
-          </TabsTrigger> */}
-          {/* <TabsTrigger value="focus-documents">View Details</TabsTrigger> */}
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>

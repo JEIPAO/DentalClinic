@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/Patient/data-table"
-
+import {PatientTable} from "@/components/Patient/PatientTable"
 
 import {
   SidebarInset,
