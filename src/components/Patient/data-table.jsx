@@ -93,6 +93,7 @@ import {
 } from "@/components/ui/tabs"
 
 import {RegisterPatient}  from "@/components/Patient/register-patient"
+import { ro } from "date-fns/locale/ro";
 
 export const schema = z.object({
   id: z.number(),
@@ -126,375 +127,6 @@ function DragHandle({
 }
 
 const columns = [
-   {
-    accessorKey: "id",
-    patientid: "Patient ID",
-    cell: ({ row }) => {
-      return <TableCellViewer item={row.original}  className="w-15"/>;
-    },
-    enableHiding: false,
-  },
-  {
-    accessorKey: "firstname",
-    header: "First Name",
-    cell: ({ row }) => {
-      return <TableCellViewer item={row.original}  className="w-15"/>;
-    },
-    enableHiding: false,
-  },
-  {
-    accessorKey: "middlename",
-    header: "Middle Name",
-    cell: ({ row }) => {
-       return <TableCellViewer item={row.original}  className="w-15"/>;
-    },
-    enableHiding: false,
-  },
-  {
-    accessorKey: "lastname",
-    header: "Last Name",
-    cell: ({ row }) => (
-      <Badge variant="outline" className="text-muted-foreground px-1.5">
-        {row.original.status === "Done" ? (
-          <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
-        ) : (
-          <IconLoader />
-        )}
-        {row.original.status}
-      </Badge>
-    ),
-  },
-
-  {
-    accessorKey: "datebirth",
-    header: "Date of Birth",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "age",
-    header: "Age",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "sex",
-    header: "Sex",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "religion",
-    header: "Religion",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "nationality",
-    header: "Nationality",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "contactno",
-    header: "Contact No.",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "address",
-    header: "Address",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "Occupation",
-    header: "Occupation",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "emailaddress",
-    header: "Email Address",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
-  {
-    accessorKey: "nickname",
-    header: "Nick Name",
-    cell: ({ row }) => {
-      const isAssigned = row.original.reviewer !== "Assign reviewer"
-
-      if (isAssigned) {
-        return row.original.reviewer
-      }
-
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
-            Reviewer
-          </Label>
-          <Select>
-            <SelectTrigger
-              className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-reviewer`}>
-              <SelectValue placeholder="Assign reviewer" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-              <SelectItem value="Jamik Tashpulatov">
-                Jamik Tashpulatov
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      );
-    },
-  },
   {
     id: "actions",
     cell: () => (
@@ -518,6 +150,110 @@ const columns = [
       </DropdownMenu>
     ),
   },
+   {
+    accessorKey: "id",
+    header: "PatientID",
+    cell: ({ row }) => {
+      return row.original.id;
+    },
+    enableHiding: false,
+  },
+  {
+    accessorKey: "firstname",
+    header: "Firstname",
+    cell: ({ row }) => {
+      return row.original.firstname;
+    },
+    enableHiding: false,
+  },
+  {
+    accessorKey: "middlename",
+    header: "Middle Name",
+    cell: ({ row }) => {
+       return row.original.middlename
+    },
+    enableHiding: false,
+  },
+  {
+    accessorKey: "lastname",
+    header: "Last Name",
+    cell: ({ row }) => (
+      row.original.lastname
+    ),
+  },
+
+  {
+    accessorKey: "datebirth",
+    header: "Date of Birth",
+    cell: ({ row }) => {
+      return row.original.datebirth
+    },
+  },
+  {
+    accessorKey: "age",
+    header: "Age",
+    cell: ({ row }) => {
+      return row.original.age
+    },
+  },
+  {
+    accessorKey: "sex",
+    header: "Sex",
+    cell: ({ row }) => {
+      return row.original.sex
+    },
+  },
+  {
+    accessorKey: "religion",
+    header: "Religion",
+    cell: ({ row }) => {
+      return row.original.religion
+    },
+  },
+  
+  {
+    accessorKey: "nationality",
+    header: "Nationality",
+    cell: ({ row }) => {
+     return row.original.nationality
+    },
+  },
+  {
+    accessorKey: "contactno",
+    header: "Contact No.",
+    cell: ({ row }) => {
+     return row.original.contact
+    },
+  },
+  {
+    accessorKey: "address",
+    header: "Address",
+    cell: ({ row }) => {
+     return row.original.address
+    },
+  },
+  {
+    accessorKey: "Occupation",
+    header: "Occupation",
+    cell: ({ row }) => {
+      return row.original.occupation
+    },
+  },
+  {
+    accessorKey: "emailaddress",
+    header: "Email Address",
+    cell: ({ row }) => {
+      return row.original.email
+    },
+  },
+  {
+    accessorKey: "nickname",
+    header: "Nick Name",
+    cell: ({ row }) => {
+      return row.original.nickname
+    },
+  },
+  
 ]
 
 function DraggableRow({
@@ -554,11 +290,44 @@ export function DataTable({
   const [columnVisibility, setColumnVisibility] =
     React.useState({})
   const [columnFilters, setColumnFilters] = React.useState([])
+  const [globalFilter, setGlobalFilter] = React.useState("")
   const [sorting, setSorting] = React.useState([])
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
     pageSize: 10,
   })
+  const [editingRow, setEditingRow] = React.useState(null)
+  const [editValues, setEditValues] = React.useState({})
+  const [isEditOpen, setIsEditOpen] = React.useState(false)
+
+  const handleEdit = React.useCallback((row) => {
+    setEditingRow(row)
+    setEditValues(row)
+    setIsEditOpen(true)
+  }, [])
+
+  const handleDelete = React.useCallback((rowId) => {
+    setData((current) => current.filter((item) => item.id !== rowId))
+  }, [])
+
+  const handleSave = React.useCallback(() => {
+    if (!editingRow) return
+
+    setData((current) =>
+      current.map((item) =>
+        item.id === editingRow.id ? { ...item, ...editValues } : item
+      )
+    )
+    setIsEditOpen(false)
+    setEditingRow(null)
+  }, [editingRow, editValues])
+
+  const handleEditChange = (field) => (event) => {
+    setEditValues((current) => ({
+      ...current,
+      [field]: event.target.value,
+    }))
+  }
   const sortableId = React.useId()
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -568,14 +337,48 @@ export function DataTable({
 
   const dataIds = React.useMemo(() => data?.map(({ id }) => id) || [], [data])
 
+  const tableColumns = React.useMemo(
+    () =>
+      columns.map((column) =>
+        column.id === "actions"
+          ? {
+              ...column,
+              cell: ({ row }) => (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
+                      size="icon">
+                      <IconDotsVertical />
+                      <span className="sr-only">Open menu</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-32">
+                    <DropdownMenuItem onClick={() => handleEdit(row.original)}>
+                      Edit
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDelete(row.original.id)}>
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ),
+            }
+          : column
+      ),
+    [handleEdit, handleDelete]
+  )
+
   const table = useReactTable({
     data,
-    columns,
+    columns: tableColumns,
     state: {
       sorting,
       columnVisibility,
       rowSelection,
       columnFilters,
+      globalFilter,
       pagination,
     },
     getRowId: (row) => row.id.toString(),
@@ -583,6 +386,7 @@ export function DataTable({
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
     onColumnVisibilityChange: setColumnVisibility,
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
@@ -591,6 +395,14 @@ export function DataTable({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
+    globalFilterFn: (row, columnId, filterValue) => {
+      const search = String(filterValue).toLowerCase()
+      return row
+        .getAllCells()
+        .some((cell) =>
+          String(cell.getValue()).toLowerCase().includes(search)
+        )
+    },
   })
 
   function handleDragEnd(event) {
@@ -613,6 +425,12 @@ export function DataTable({
           <TabsTrigger value="outline">Patient Record</TabsTrigger>
         </TabsList>
         <div className="flex items-center gap-2">
+          <Input
+            placeholder="Search patient name..."
+            value={globalFilter}
+            onChange={(event) => setGlobalFilter(event.target.value)}
+            className="w-lg max-w-sm"
+          />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
@@ -691,6 +509,243 @@ export function DataTable({
             </Table>
           </DndContext>
         </div>
+        <Drawer open={isEditOpen} onOpenChange={setIsEditOpen} direction="right">
+          <DrawerContent>
+            <DrawerHeader className="gap-1">
+              <DrawerTitle>Edit patient</DrawerTitle>
+              <DrawerDescription>
+                Update patient details and save your changes.
+              </DrawerDescription>
+            </DrawerHeader>
+            <div className="flex flex-col gap-4 px-4 pb-4">
+              {editingRow ? (
+                <Tabs defaultValue="information" className="w-full">
+                  <TabsList>
+                    <TabsTrigger value="information">Information</TabsTrigger>
+                    <TabsTrigger value="minors">For Minors</TabsTrigger>
+                    <TabsTrigger value="dentalmedical">Dental & Medical History</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="information" className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-firstname">Firstname</Label>
+                        <Input
+                          id="edit-firstname"
+                          value={editValues.firstname ?? ""}
+                          onChange={handleEditChange("firstname")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-middlename">Middle Name</Label>
+                        <Input
+                          id="edit-middlename"
+                          value={editValues.middlename ?? ""}
+                          onChange={handleEditChange("middlename")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-lastname">Last Name</Label>
+                        <Input
+                          id="edit-lastname"
+                          value={editValues.lastname ?? ""}
+                          onChange={handleEditChange("lastname")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-datebirth">Date of Birth</Label>
+                        <Input
+                          id="edit-datebirth"
+                          value={editValues.datebirth ?? ""}
+                          onChange={handleEditChange("datebirth")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-age">Age</Label>
+                        <Input
+                          id="edit-age"
+                          value={editValues.age ?? ""}
+                          onChange={handleEditChange("age")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-sex">Sex</Label>
+                        <Input
+                          id="edit-sex"
+                          value={editValues.sex ?? ""}
+                          onChange={handleEditChange("sex")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-religion">Religion</Label>
+                        <Input
+                          id="edit-religion"
+                          value={editValues.religion ?? ""}
+                          onChange={handleEditChange("religion")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-nationality">Nationality</Label>
+                        <Input
+                          id="edit-nationality"
+                          value={editValues.nationality ?? ""}
+                          onChange={handleEditChange("nationality")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-contact">Contact No.</Label>
+                        <Input
+                          id="edit-contact"
+                          value={editValues.contact ?? ""}
+                          onChange={handleEditChange("contact")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-address">Address</Label>
+                        <Input
+                          id="edit-address"
+                          value={editValues.address ?? ""}
+                          onChange={handleEditChange("address")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-occupation">Occupation</Label>
+                        <Input
+                          id="edit-occupation"
+                          value={editValues.occupation ?? ""}
+                          onChange={handleEditChange("occupation")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-email">Email</Label>
+                        <Input
+                          id="edit-email"
+                          value={editValues.email ?? ""}
+                          onChange={handleEditChange("email")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-nickname">Nickname</Label>
+                        <Input
+                          id="edit-nickname"
+                          value={editValues.nickname ?? ""}
+                          onChange={handleEditChange("nickname")}
+                        />
+                      </div>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="minors" className="space-y-4">
+                    <div className="grid gap-4">
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-parent-guardian">Parent/Guardian's Name</Label>
+                        <Input
+                          id="edit-parent-guardian"
+                          value={editValues.parentGuardian ?? ""}
+                          onChange={handleEditChange("parentGuardian")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-minor-occupation">Occupation</Label>
+                        <Input
+                          id="edit-minor-occupation"
+                          value={editValues.minorOccupation ?? ""}
+                          onChange={handleEditChange("minorOccupation")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-minor-referring">Whom may we thank for referring you?</Label>
+                        <Input
+                          id="edit-minor-referring"
+                          value={editValues.minorReferring ?? ""}
+                          onChange={handleEditChange("minorReferring")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-minor-consultation">Reason for Dental Consultation</Label>
+                        <Input
+                          id="edit-minor-consultation"
+                          value={editValues.minorConsultation ?? ""}
+                          onChange={handleEditChange("minorConsultation")}
+                        />
+                      </div>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="dentalmedical" className="space-y-4">
+                    <div className="grid gap-4">
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-previous-dentist">Previous Dentist</Label>
+                        <Input
+                          id="edit-previous-dentist"
+                          value={editValues.previousDentist ?? ""}
+                          onChange={handleEditChange("previousDentist")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-last-dental-visit">Last Dental Visit</Label>
+                        <Input
+                          id="edit-last-dental-visit"
+                          value={editValues.lastDentalVisit ?? ""}
+                          onChange={handleEditChange("lastDentalVisit")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-med-dentist">Name of Dentist</Label>
+                        <Input
+                          id="edit-med-dentist"
+                          value={editValues.medDentist ?? ""}
+                          onChange={handleEditChange("medDentist")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-med-office-address">Office Address</Label>
+                        <Input
+                          id="edit-med-office-address"
+                          value={editValues.medOfficeAddress ?? ""}
+                          onChange={handleEditChange("medOfficeAddress")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-good-health">1. Are you in good health?</Label>
+                        <Input
+                          id="edit-good-health"
+                          value={editValues.goodHealth ?? ""}
+                          onChange={handleEditChange("goodHealth")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-medical-treatment">2. Are you under medical treatment now?</Label>
+                        <Input
+                          id="edit-medical-treatment"
+                          value={editValues.medicalTreatment ?? ""}
+                          onChange={handleEditChange("medicalTreatment")}
+                        />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="edit-serious-illness">3. Have you ever had serious illness or surgical operation?</Label>
+                        <Input
+                          id="edit-serious-illness"
+                          value={editValues.seriousIllness ?? ""}
+                          onChange={handleEditChange("seriousIllness")}
+                        />
+                      </div>
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              ) : (
+                <div className="rounded border border-dashed border-muted p-4 text-sm text-muted-foreground">
+                  Select a row and click Edit to update patient details.
+                </div>
+              )}
+            </div>
+            <DrawerFooter>
+              <Button onClick={handleSave} disabled={!editingRow}>
+                Save changes
+              </Button>
+              <DrawerClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
         <div className="flex items-center justify-between px-4">
           <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
             {table.getFilteredSelectedRowModel().rows.length} of{" "}
@@ -805,9 +860,9 @@ function TableCellViewer({
 
     <Drawer direction={isMobile ? "bottom" : "right"}>
        
-      <DrawerTrigger asChild>
+      {/* <DrawerTrigger asChild>
         <Button variant="link" className="text-foreground w-fit px-0 text-left">
-          {item.header}
+          {item.id} 
         </Button>
       </DrawerTrigger>
       <DrawerContent>
@@ -947,7 +1002,7 @@ function TableCellViewer({
             <Button variant="outline">Done</Button>
           </DrawerClose>
         </DrawerFooter>
-      </DrawerContent>
+      </DrawerContent> */}
     </Drawer>
   );
 }

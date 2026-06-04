@@ -45,15 +45,16 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Patient",
-      url: "/patient",
-      icon: IconListDetails,
-    },
-    {
       title: "Billing",
       url: "/billing",
       icon: IconChartBar,
     },
+    {
+      title: "Patient",
+      url: "/patient",
+      icon: IconListDetails,
+    },
+    
     {
       title: "Treatments/Procedures",
       url: "/treatments",

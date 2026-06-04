@@ -9,15 +9,17 @@ import { Button } from "@/components/ui/button"
 import  LoginPage  from './pages/login/LoginPage'
 import Dashboard from './pages/Dasboard'
 import Patient from './pages/Patient'
+import Billing from './pages/Billing'
+import Treatments from './pages/Treatments'
 
 function App() {
-
-
   return (
     <Router>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patient" element={<Patient />} />
+        <Route path="/billing" element={<Billing />} />
+        <Route path="/treatments" element={<Treatments />} />
         <Route path="/" element={<LoginPage />} />
         {/* Add more routes here as needed */}
      </Routes>
