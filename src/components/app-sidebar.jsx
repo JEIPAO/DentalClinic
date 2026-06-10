@@ -59,6 +59,11 @@ const data = {
       title: "Treatments/Procedures",
       url: "/treatments",
       icon: IconFolder,
+    },
+    {
+      title: "Invoices",
+      url: "/invoices",
+      icon: IconFolder,
     }
   ],
   
