@@ -16,7 +16,7 @@ import Treatments from './pages/Treatments'
 
 function App() {
   return (
-    <Router basename="DentalClinic">
+    <Router basename="/DentalClinic">
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patient" element={<Patient />} />
