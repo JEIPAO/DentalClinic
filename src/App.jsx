@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  BrowserRouter as Router,
+  HashRouter  as Router,
   Routes,
   Route
 } from 'react-router-dom';
@@ -16,7 +16,7 @@ import Treatments from './pages/Treatments'
 
 function App() {
   return (
-    <Router basename="/DentalClinic">
+    <Router>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patient" element={<Patient />} />
