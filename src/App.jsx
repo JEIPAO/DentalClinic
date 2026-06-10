@@ -18,11 +18,11 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patient" element={<Patient />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/treatments" element={<Treatments />} />
-        <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/invoices" element={<Invoices />} />
         {/* Add more routes here as needed */}
